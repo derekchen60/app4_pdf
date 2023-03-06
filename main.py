@@ -17,11 +17,14 @@ for index,row in df.iterrows():
     pdf.set_text_color(100,100,100) 
     pdf.cell(w=0, h=12, txt=row["Topic"], align="L", ln=1)
     
-    #Inputs for pdf.line are mm measreuments of where you want the line to be
-    pdf.line(10,22,200,22)
+    #Creates the lines in document
+    line_gap = 22
+    while line_gap < 290:
+        pdf.line(10,line_gap,200,line_gap)
+        line_gap = line_gap + 6
 
     #Purpose: Sets the footer
-    #Size of the distance breakline between the last text in mm
+    #pdf.ln specifies breakline between previous "cell"(title) not start of page
     pdf.ln(265)
     pdf.set_font(family="Times", style="B",size=8)
     pdf.cell(w=0, h=12, txt=row["Topic"], align="R")
@@ -32,4 +35,12 @@ for index,row in df.iterrows():
         pdf.ln(277)
         pdf.set_font(family="Times", style="B",size=8)
         pdf.cell(w=0, h=12, txt=row["Topic"], align="R")
+        
+        #Creates the lines in document
+        line_gap = 22
+        while line_gap < 290:
+            pdf.line(10,line_gap,200,line_gap)
+            line_gap = line_gap + 6
+
+
 pdf.output("output.pdf")
